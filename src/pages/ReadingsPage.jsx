@@ -8,7 +8,7 @@ function ReadingsPage() {
     try {
       const response = await tarotApi.post(`/readings/${spreadType}`);
       setReading(response.data);
-      //console.log(reading);
+      console.log("Reading:", response.data);
     } catch (error) {
       console.error("Error generating reading:", error);
     }
@@ -30,7 +30,7 @@ function ReadingsPage() {
         ? card.interpretation.reversed
         : card.interpretation.upright;
 
-      console.log("Current Card:", card);
+      //console.log("Current Card:", card);
 
       return (
         <div key={card._id}>
@@ -41,7 +41,7 @@ function ReadingsPage() {
       );
     });
   };
-
+  console.log(reading);
   return (
     <div>
       <h1>Select a spread:</h1>
@@ -58,7 +58,9 @@ function ReadingsPage() {
       {reading && (
         <div>
           <h2>Reading Result:</h2>
-          {Array.isArray(reading) ? renderCard(reading) : renderCard([reading])}
+          {Array.isArray(reading.cards)
+            ? renderCard(reading.cards)
+            : renderCard([reading.cards])}
         </div>
       )}
     </div>
