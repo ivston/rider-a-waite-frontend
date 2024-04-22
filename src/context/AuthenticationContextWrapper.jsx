@@ -24,7 +24,7 @@ function AuthContextWrapper({ children }) {
         setIsLoggedIn(false);
         return;
       }
-      const response = await tarotApi.get("/authentication/login", {
+      const response = await tarotApi.get("/authentication/verify", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

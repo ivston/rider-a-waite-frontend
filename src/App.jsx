@@ -9,6 +9,7 @@ import OneCardPage from "./pages/OneCardPage";
 import IsLoggedOut from "./routing/IsLoggedOut";
 /* Components */
 import Navbar from "./components/Navbar";
+import ReadingsPage from "./pages/ReadingsPage";
 
 // import { createContext, useState } from "react";
 // import useAuth from "./context/UseAuthentication";
@@ -43,6 +44,7 @@ function App() {
 
         <Route path="/deck" element={<DeckPage />} />
         <Route path="/deck/:cardId" element={<OneCardPage />} />
+        <Route path="/readings" element={<ReadingsPage />} />
       </Routes>
       {/* </SimpleContext.Provider> */}
     </>

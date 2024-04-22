@@ -20,13 +20,16 @@ function DeckPage() {
 
   if (!deck) return <Loader />;
   return (
-    <div>
+    <div className="flex flex-wrap gap-5 justify-between m-5">
       {deck.map((card) => {
         return (
-          <div key={card._id} className="game-card">
-            <h2>
+          <div
+            key={card._id}
+            className="flex flex-col text-center border border-purple-400 rounded-md p-3"
+          >
+            <h2 className=" font-bold">
               {" "}
-              <Link to={`/boardgames/${card._id}`}>{card.name}</Link>
+              <Link to={`/deck/${card._id}`}>{card.name}</Link>
             </h2>
             <div className="img-wrapper">
               <img src={card.image.upright} alt={`${card.name} card upright`} />
