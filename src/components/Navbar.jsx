@@ -4,7 +4,7 @@ import useAuth from "../context/UseAuthentication";
 function Navbar() {
   const { isLoggedIn, logout } = useAuth();
   return (
-    <nav className="flex flex-row justify-between px-5 py-5 bg-purple-400">
+    <nav className="flex flex-row justify-between px-5 py-5 bg-purple-400 text-white">
       <h1>
         <Link className="" to={"/"}>
           Rider-A-Waite

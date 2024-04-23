@@ -63,7 +63,7 @@ function OneCardPage() {
       <div className="flex flex-row">
         <div>
           <div className="border border-purple-400 rounded-md p-3">
-            <h2>{card.name}</h2>
+            <h1 className=" text-purple-800 font-bold">{card.name}</h1>
             <img className="" src={card.image.upright} alt="card image" />
           </div>
 
@@ -72,7 +72,7 @@ function OneCardPage() {
               <p>Description: {card.description}</p>
             </div>
             <div className="w-1/2">
-              <p>Upright interpretation: {card.interpretation.uprigth}</p>
+              <p>Upright interpretation: {card.interpretation.upright}</p>
               <p>Reversed interpretation: {card.interpretation.reversed}</p>
             </div>
           </div>

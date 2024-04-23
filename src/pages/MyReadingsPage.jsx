@@ -29,19 +29,23 @@ function ReadingsPage() {
 
   const renderReadings = () => {
     return readings.map((reading) => (
-      <div key={reading._id}>
-        <h2>{reading.spreadType}</h2>
+      <div
+        className="border border-purple-400 rounded-md p-3"
+        key={reading._id}
+      >
+        <h2>{reading.spreadType} reading</h2>
+        <p>Created on: {new Date(reading.createdAt).toLocaleDateString()}</p>
         <div style={{ display: "flex" }}>
           {reading.cardsInOrder.map((card) => (
             <img
               key={card._id}
-              src={card.image.upright} // Use appropriate image field
+              src={card.image.upright}
               alt={card.name}
               style={{ width: "100px", height: "150px", marginRight: "10px" }}
             />
           ))}
         </div>
-        {/* Add a delete button for each reading */}
+
         <button onClick={() => deleteReading(reading._id)}>Delete</button>
       </div>
     ));
