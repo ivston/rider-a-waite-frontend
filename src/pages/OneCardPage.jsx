@@ -3,9 +3,10 @@ import tarotApi from "../service/myApi";
 import Loader from "./../components/Loader";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 function OneCardPage() {
   const [card, setCard] = useState(null);
-  //const [notes, setNotes] = useState(null);
+  const [note, setNote] = useState(null);
   const { cardId } = useParams();
   const { isLoggedIn, user } = useAuth();
 
@@ -13,102 +14,91 @@ function OneCardPage() {
     fetchCard();
   }, []);
 
-  //   async function handleNoteSubmit(e) {
-  //     e.preventDefault();
-  //     try {
-  //       const noteToSend = { notes };
-  //       const response = await tarotApi.post(`/notes/${cardId}`, noteToSend);
-  //       console.log(response);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-
   async function fetchCard() {
     try {
       const { data } = await tarotApi.get("/cards/" + cardId);
       setCard(data.oneCard);
-      //   setNotes(data.notes);
+      if (isLoggedIn) {
+        const userNote = user.notes.find((note) => note.card_id === cardId);
+        setNote(userNote);
+      }
     } catch (error) {
       console.log(error);
     }
   }
 
-  //   function handleDeleteNote(id) {
-  //     return async () => {
-  //       try {
-  //         const response = await tarotApi.delete("/notes/" + id);
-  //         console.log(response);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-  //   }
+  async function handleNoteSubmit(e) {
+    e.preventDefault();
+    try {
+      const noteToSend = { card_id: cardId, content: note };
+      if (note) {
+        // Edit note if already exists
+        await tarotApi.post(`authentication/notes/`, noteToSend);
+      } else {
+        // Add new note if doesn't exist
+        await tarotApi.post(`authentication/notes/`, noteToSend);
+      }
+      // Refetch card and notes after adding/editing note
+      fetchCard();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleDeleteNote() {
+    try {
+      if (note) {
+        await tarotApi.delete(`authentication/notes/${cardId}`);
+        // Refetch card and notes after deleting note
+        fetchCard();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   if (!card) return <Loader />;
   return (
     <>
-      <div>
-        <h2>{card.name}</h2>
-        <img src={card.image.upright} alt="card image" />
+      <div className="flex flex-row">
         <div>
+          <div className="border border-purple-400 rounded-md p-3">
+            <h2>{card.name}</h2>
+            <img className="" src={card.image.upright} alt="card image" />
+          </div>
+
           <div>
             <div>
               <p>Description: {card.description}</p>
             </div>
-            <div>
+            <div className="w-1/2">
               <p>Upright interpretation: {card.interpretation.uprigth}</p>
-              <p>Upright interpretation: {card.interpretation.reversed}</p>
+              <p>Reversed interpretation: {card.interpretation.reversed}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <h2>Comments</h2>
       {isLoggedIn && (
-        <>
-          {/* <form onSubmit={handleNoteSubmit}>
+        <div>
+          <h2>Notes</h2>
+          <form onSubmit={handleNoteSubmit}>
             <textarea
-              name=""
-              id=""
+              name="note"
+              id="note"
               cols="30"
               rows="10"
-              value={}
-              onChange={(e) => setNotes(e.target.value)}
+              value={note ? note.content : ""}
+              onChange={(e) => setNote(e.target.value)}
             ></textarea>
-            <button>Save note</button>
-          </form> */}
-          {/* </>
-      )}
-      {notes.length === 0 ? (
-        <p>No notes yet</p>
-      ) : (
-        <>
-          {notes.map((note) => {
-            console.log(note);
-            const canDelete =
-              user && (note.user._id === user._id || user.role === "admin");
-            return (
-              <div className="comment" key={note._id}>
-                <div className="author">
-                  <p>{note.user?.email}</p>
-                </div>
-                <div
-                  className="content"
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <p>{note.content}</p>
-                  {canDelete && (
-                    <p onClick={handleDeleteComment(comment._id)}>🗑️</p>
-                  )}
-                </div> */}
-          {/* </div> */}
-          {/* ); */}
-          {/* })} */}
-        </>
+            <button type="submit">{note ? "Edit Note" : "Add Note"}</button>
+            {note && (
+              <button type="button" onClick={handleDeleteNote}>
+                Delete Note
+              </button>
+            )}
+          </form>
+        </div>
       )}
     </>
   );

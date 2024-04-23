@@ -1,4 +1,5 @@
 import tarotApi from "../service/myApi";
+import { Navigate } from "react-router-dom";
 import Loader from "./../components/Loader";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -26,6 +27,7 @@ function DeckPage() {
           <div
             key={card._id}
             className="flex flex-col text-center border border-purple-400 rounded-md p-3"
+            onClick={Navigate}
           >
             <h2 className=" font-bold">
               {" "}
