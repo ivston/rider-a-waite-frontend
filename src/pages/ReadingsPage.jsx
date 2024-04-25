@@ -35,7 +35,7 @@ function ReadingsPage() {
           <div>
             <div className="flex flex-col items-center gap-5 border border-purple-600 p-5 rounded-lg">
               <p className="font-bold text-purple-800">{card.name}</p>
-              <div className="w-1/3 ">
+              <div className="w-1/3">
                 <img src={imageUrl} alt={card.name} className="" />
               </div>
             </div>

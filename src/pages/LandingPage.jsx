@@ -2,7 +2,7 @@ import React from "react";
 
 const LandingPage = () => {
   return (
-    <div className="flex flex-col items-center gap-10 mt-10">
+    <div className="flex flex-col items-center gap-10 mt-10 text-purple-800">
       <h1 className=" font-bold">
         Welcome to Rider-A-Waite, a website developed by Ivan Stoyanov.
       </h1>

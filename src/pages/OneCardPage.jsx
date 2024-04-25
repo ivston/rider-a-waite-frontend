@@ -93,24 +93,40 @@ function OneCardPage() {
       </div>
 
       {isLoggedIn && (
-        <div className="mt-10">
-          <h1 className="font-bold text-purple-800">Notes</h1>
-          <form onSubmit={handleNoteSubmit}>
-            <textarea
-              name="note"
-              id="note"
-              cols="30"
-              rows="10"
-              value={note ? note.content : ""}
-              onChange={(e) => setNote(e.target.value)}
-            ></textarea>
-            <button type="submit">{note ? "Edit Note" : "Add Note"}</button>
-            {note && (
-              <button type="button" onClick={handleDeleteNote}>
-                Delete Note
-              </button>
-            )}
-          </form>
+        <div className="m-10">
+          <h1 className="font-bold text-purple-800 mb-5">Your notes</h1>
+          <div className="flex flex-row gap-2">
+            <form onSubmit={handleNoteSubmit}>
+              <div>
+                <textarea
+                  name="note"
+                  id="note"
+                  cols="80"
+                  rows="10"
+                  value={note ? note.content : ""}
+                  onChange={(e) => setNote(e.target.value)}
+                  className="border border-purple-600 rounded-lg p-5"
+                ></textarea>
+              </div>
+              <div className="flex flex-col gap-5">
+                <button
+                  className="bg-purple-200 rounded-lg p-2 text-purple-800 font-bold hover:border hover:border-purple-800 mt-5 mb-10"
+                  type="submit"
+                >
+                  {note ? "Edit Note" : "Add Note"}
+                </button>
+                {note && (
+                  <button
+                    className="bg-purple-200 rounded-lg p-2 text-purple-800 font-bold hover:border hover:border-purple-800 mt-5 mb-10"
+                    type="button"
+                    onClick={handleDeleteNote}
+                  >
+                    Delete Note
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </>
