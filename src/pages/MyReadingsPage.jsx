@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import tarotApi from "../service/myApi";
+import { Link } from "react-router-dom";
 
 function ReadingsPage() {
   const [readings, setReadings] = useState([]);
@@ -29,25 +30,23 @@ function ReadingsPage() {
 
   const renderReadings = () => {
     return readings.map((reading) => (
-      <div
-        className="border border-purple-400 rounded-md p-3"
-        key={reading._id}
-      >
-        <h2>{reading.spreadType} reading</h2>
-        <p>Created on: {new Date(reading.createdAt).toLocaleDateString()}</p>
-        <div style={{ display: "flex" }}>
-          {reading.cardsInOrder.map((card) => (
-            <img
-              key={card._id}
-              src={card.image.upright}
-              alt={card.name}
-              style={{ width: "100px", height: "150px", marginRight: "10px" }}
-            />
-          ))}
+      <Link to={`/myreadings/${reading._id}`} key={reading._id}>
+        <div className="border border-purple-400 rounded-md p-3">
+          <h2>{reading.spreadType} reading</h2>
+          <p>Created on: {new Date(reading.createdAt).toLocaleDateString()}</p>
+          <div style={{ display: "flex" }}>
+            {reading.cardsInOrder.map((card) => (
+              <img
+                key={card._id}
+                src={card.image.upright}
+                alt={card.name}
+                style={{ width: "100px", height: "150px", marginRight: "10px" }}
+              />
+            ))}
+          </div>
+          <button onClick={() => deleteReading(reading._id)}>Delete</button>
         </div>
-
-        <button onClick={() => deleteReading(reading._id)}>Delete</button>
-      </div>
+      </Link>
     ));
   };
 

@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import DeckPage from "./pages/DeckPage";
 import OneCardPage from "./pages/OneCardPage";
 import MyReadingsPage from "./pages/MyReadingsPage";
+import OneReadingPage from "./pages/OneReadingPage";
 /* Re-Routing */
 import IsLoggedOut from "./routing/IsLoggedOut";
 /* Components */
@@ -16,19 +17,22 @@ function App() {
   return (
     <div className=" font-montserrat">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
+      <div className="mx-10">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
 
-        <Route element={<IsLoggedOut />}>
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Route>
+          <Route element={<IsLoggedOut />}>
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
 
-        <Route path="/deck" element={<DeckPage />} />
-        <Route path="/deck/:cardId" element={<OneCardPage />} />
-        <Route path="/readings" element={<ReadingsPage />} />
-        <Route path="/myreadings" element={<MyReadingsPage />} />
-      </Routes>
+          <Route path="/deck" element={<DeckPage />} />
+          <Route path="/deck/:cardId" element={<OneCardPage />} />
+          <Route path="/readings" element={<ReadingsPage />} />
+          <Route path="/myreadings" element={<MyReadingsPage />} />
+          <Route path="/myreadings/:readingId" element={<OneReadingPage />} />
+        </Routes>
+      </div>
     </div>
   );
 }

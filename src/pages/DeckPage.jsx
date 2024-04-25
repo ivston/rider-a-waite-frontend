@@ -38,17 +38,17 @@ function DeckPage() {
   return (
     <div>
       {/* Search input */}
-      <form onSubmit={handleSearchSubmit} className="mb-5">
+      <form onSubmit={handleSearchSubmit} className="m-5">
         <input
           type="text"
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Search cards..."
-          className="rounded-md p-2 border border-purple-400"
+          className="rounded-full p-2 border border-purple-400"
         />
         <button
           type="submit"
-          className="ml-2 px-4 py-2 bg-purple-500 text-white rounded-md"
+          className="ml-2 px-4 py-2 bg-purple-500 text-white rounded-full"
         >
           Search
         </button>
@@ -59,10 +59,10 @@ function DeckPage() {
           return (
             <div
               key={card._id}
-              className="flex flex-col text-center text-purple-800 border-4 border-purple-400 rounded-md p-3 w-60"
+              className="flex flex-col text-center text-purple-800 border-2 border-purple-400 rounded-lg p-5 w-60"
               onClick={Navigate}
             >
-              <h2 className=" font-bold">
+              <h2 className=" font-bold mb-3">
                 {" "}
                 <Link to={`/deck/${card._id}`}>{card.name}</Link>
               </h2>

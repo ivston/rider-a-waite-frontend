@@ -60,28 +60,41 @@ function OneCardPage() {
   if (!card) return <Loader />;
   return (
     <>
-      <div className="flex flex-row">
-        <div>
-          <div className="border border-purple-400 rounded-md p-3">
-            <h1 className=" text-purple-800 font-bold">{card.name}</h1>
-            <img className="" src={card.image.upright} alt="card image" />
+      <div className="flex flex-col pt-10 w-full">
+        <div className="flex flex-row mb-10 gap-10 justify-around items-center border-purple-400 rounded-lg p-5">
+          <div className="w-1/2">
+            <h1 className="font-bold text-purple-800 text-2xl mb-10">
+              {card.name}
+            </h1>
+            <p className="text-md leading-8">{card.description}</p>
           </div>
-
-          <div>
-            <div>
-              <p>Description: {card.description}</p>
-            </div>
-            <div className="w-1/2">
-              <p>Upright interpretation: {card.interpretation.upright}</p>
-              <p>Reversed interpretation: {card.interpretation.reversed}</p>
-            </div>
+          <div className="w-1/3">
+            <img
+              className=" border-2 border-purple-400 rounded-lg p-5"
+              src={card.image.upright}
+              alt="card image"
+            />
+          </div>
+        </div>
+        <div className="interpretations flex gap-10 justify-between mb-10 mx-10">
+          <div className="w-1/2 border border-purple-400 rounded-lg p-5">
+            <h1 className="font-bold text-purple-800 mb-3">
+              Upright interpretation
+            </h1>
+            <p className="text-justify">{card.interpretation.upright}</p>
+          </div>
+          <div className="w-1/2 border border-purple-400 rounded-lg p-5">
+            <h1 className="font-bold text-purple-800 mb-3">
+              Reversed interpretation
+            </h1>
+            <p className="text-justify">{card.interpretation.reversed}</p>
           </div>
         </div>
       </div>
 
       {isLoggedIn && (
-        <div>
-          <h2>Notes</h2>
+        <div className="mt-10">
+          <h1 className="font-bold text-purple-800">Notes</h1>
           <form onSubmit={handleNoteSubmit}>
             <textarea
               name="note"
