@@ -35,35 +35,51 @@ function LoginPage() {
   const { password, email } = formState;
   return (
     <div>
-      <h2>Login form</h2>
-
-      <p style={{ color: "red" }}>{error}</p>
-
+      <h1 className=" text-3xl font-bold text-purple-800 text-center my-16">
+        Rider-A-Waite
+      </h1>
+      <p className=" text-red-400">{error}</p>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email: </label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            value={email}
-            onChange={handleChange}
-          />
+        <div className="flex flex-col gap-5 items-center justify-center  text-left">
+          <div>
+            <label className="text-purple-800 font-bold mr-9" htmlFor="email">
+              email{" "}
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              value={email}
+              onChange={handleChange}
+              className="border border-purple-600 rounded-lg p-2 w-44"
+            />
+          </div>
+          <div>
+            <label
+              className="text-purple-800 font-bold mr-2"
+              htmlFor="password"
+            >
+              password{" "}
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="password"
+              value={password}
+              onChange={handleChange}
+              className="border border-purple-600 rounded-lg p-2 w-44"
+            />
+          </div>
+          <button className="bg-purple-200 rounded-lg p-2 text-purple-800 font-bold hover:border hover:border-purple-800 mt-5 mb-10">
+            login
+          </button>
+          <p className="text-purple-800 text-center">
+            Don't have an account yet? <br />
+            <Link to="/signup" className="font-bold hover:text-purple-200">
+              Signup here!
+            </Link>
+          </p>
         </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            id="password"
-            placeholder="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </div>
-        <button>Submit</button>
-        <p>
-          Need an account? <Link to="/signup">Signup</Link>
-        </p>
       </form>
     </div>
   );

@@ -7,7 +7,7 @@
   aspect-ratio: 1;
   border-radius: 50%;
   -webkit-mask: linear-gradient(0deg, #000 55%, #0000 0) bottom/100% 18.18%;
-  background: linear-gradient(#f03355 0 0) bottom/100% 0% no-repeat #ddd;
+  background: linear-gradient(#6a1b9a 0 0) bottom/100% 0% no-repeat #ddd;
   animation: l8 2s infinite steps(7);
 }
 @keyframes l8 {
