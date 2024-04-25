@@ -37,7 +37,6 @@ function DeckPage() {
   if (!deck) return <Loader />;
   return (
     <div>
-      {/* Search input */}
       <form onSubmit={handleSearchSubmit} className="m-5">
         <input
           type="text"

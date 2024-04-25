@@ -39,7 +39,7 @@ function ReadingsPage() {
             {reading.spreadType} reading
           </h2>
           <p className=" text-purple-800">
-            Pull on: {new Date(reading.createdAt).toLocaleDateString()}
+            Pulled on {new Date(reading.createdAt).toLocaleDateString()}
           </p>
         </div>
         <div className="flex flex-row justify-center">
@@ -80,7 +80,13 @@ function ReadingsPage() {
       <h1 className="text-purple-800 text-2xl font-bold my-10">
         Your Readings
       </h1>
-      {readings.length === 0 ? <p>No readings available</p> : renderReadings()}
+      {readings.length === 0 ? (
+        <p className="text-purple-800">
+          No readings available, go to shuffle in order to get one!
+        </p>
+      ) : (
+        renderReadings()
+      )}
     </div>
   );
 }

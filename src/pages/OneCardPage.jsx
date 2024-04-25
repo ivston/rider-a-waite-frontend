@@ -38,8 +38,8 @@ function OneCardPage() {
         // Add new note if doesn't exist
         await tarotApi.post(`authentication/notes/`, noteToSend);
       }
-      // Refetch card and notes after adding/editing note
-      fetchCard();
+      // Update the note state immediately after submitting
+      setNote(noteToSend);
     } catch (error) {
       console.log(error);
     }
@@ -49,8 +49,8 @@ function OneCardPage() {
     try {
       if (note) {
         await tarotApi.delete(`authentication/notes/${cardId}`);
-        // Refetch card and notes after deleting note
-        fetchCard();
+
+        setNote(null);
       }
     } catch (error) {
       console.log(error);
@@ -99,21 +99,18 @@ function OneCardPage() {
             <form onSubmit={handleNoteSubmit}>
               <div>
                 <textarea
-                  name="note"
-                  id="note"
-                  cols="80"
-                  rows="10"
                   value={note ? note.content : ""}
                   onChange={(e) => setNote(e.target.value)}
+                  cols={60}
                   className="border border-purple-600 rounded-lg p-5"
                 ></textarea>
               </div>
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-row gap-2">
                 <button
                   className="bg-purple-200 rounded-lg p-2 text-purple-800 font-bold hover:border hover:border-purple-800 mt-5 mb-10"
                   type="submit"
                 >
-                  {note ? "Edit Note" : "Add Note"}
+                  Update Note
                 </button>
                 {note && (
                   <button
