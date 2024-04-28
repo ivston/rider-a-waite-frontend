@@ -12,7 +12,7 @@ function OneCardPage() {
 
   useEffect(() => {
     fetchCard();
-  }, []);
+  }, [setNote]);
 
   async function fetchCard() {
     try {
