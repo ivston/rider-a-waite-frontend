@@ -13,4 +13,6 @@ The Rider-A-Waite project allows users to interact with the tarot card reading s
 - Responsive design
 - Interactive user interface
 
+## Deployed Application
 
+The deployed application is available [here](https://rider-a-waite.netlify.app).
