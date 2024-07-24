@@ -17,3 +17,6 @@ The Rider-A-Waite project enables users to interact with a tarot card reading se
 
 Access the deployed application [here](https://rider-a-waite.netlify.app).
 
+## Backend Repository
+
+The backend code for this project can be found [here](https://github.com/ivston/rider-a-waite-backend/blob/main/README.md).
